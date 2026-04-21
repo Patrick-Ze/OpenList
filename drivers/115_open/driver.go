@@ -297,6 +297,7 @@ func (d *Open115) Put(ctx context.Context, dstDir model.Obj, file model.FileStre
 			return nil
 		}
 	}
+	return fmt.Errorf("秒传失败，文件未上传")
 	// 3. get upload token
 	tokenResp, err := d.client.UploadGetToken(ctx)
 	if err != nil {

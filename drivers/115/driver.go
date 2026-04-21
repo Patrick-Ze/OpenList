@@ -2,6 +2,7 @@ package _115
 
 import (
 	"context"
+	"fmt"
 	"strings"
 	"sync"
 
@@ -216,6 +217,7 @@ func (d *Pan115) Put(ctx context.Context, dstDir model.Obj, stream model.FileStr
 		}
 	} else {
 		// 分片上传
+		return nil, fmt.Errorf("秒传失败且文件大于10MB，未执行上传")
 		if uploadResult, err = d.UploadByMultipart(ctx, &fastInfo.UploadOSSParams, stream.GetSize(), stream, dirID, up); err != nil {
 			return nil, err
 		}
